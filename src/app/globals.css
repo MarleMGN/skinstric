@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #fff;
   --foreground: #171717;
 }
 
@@ -14,13 +14,173 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fff;
+    --foreground: #0a0a0a;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roobert), Arial, Helvetica, sans-serif;
+}
+
+.hover-swap {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.1s ease;
+}
+
+.hover-swap:hover {
+  background-color: #fff;
+  border: 1px solid #fff;
+  color: black;
+}
+
+h1 {
+  color: black;
+}
+
+.hover-swap span,
+.hover-swap::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s cubic-bezier(0.08, 0.5, 0.44, 0.96);
+}
+
+.hover-swap:active {
+  border-color: black;
+}
+
+.hover-swap::after {
+  content: attr(data-hover);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transform: translate3d(0, 100%, 0);
+  transition: transform 0.3s cubic-bezier(0.08, 0.5, 0.44, 0.96);
+}
+
+.hover-swap:hover span {
+  transform: translate3d(0, -150%, 0);
+}
+
+.hover-swap:hover::after {
+  transform: translate3d(0, 0, 0);
+}
+
+.dotted-square__right {
+  display: inline-block;
+  position: relative;
+  width: 604px;
+  height: 604px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='604' height='604' viewBox='0 0 604 604' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M302 1L603 302L302 603L1 302L302 1Z' stroke='%231A1B1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 4'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.dotted-square__right::before,
+.dotted-square__right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.dotted-square__right::before {
+  opacity: 0.6;
+}
+
+.dotted-square__right::after {
+  opacity: 0.3
+}
+
+.dotted-square__right:hover::before { 
+  transform: scale(1.35); 
+  transform: translateX(-5%)
+}
+.dotted-square__right:hover::after {
+  transform: scale(1.6);
+  transform: translateX(-10%);
+}
+
+.dotted-square__left {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: -375px;
+  transform: translateY(-50%);
+  width: 604px;
+  height: 604px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='604' height='604' viewBox='0 0 604 604' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M302 1L603 302L302 603L1 302L302 1Z' stroke='%231A1B1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 4'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.dotted-square__left::before,
+.dotted-square__left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.dotted-square__left::before {
+  opacity: 0.6;
+}
+
+.dotted-square__left::after {
+  opacity: 0.3
+}
+
+.dotted-square__left:hover::before { 
+  transform: scale(1.35); 
+  transform: translateX(5%)
+}
+.dotted-square__left:hover::after {
+  transform: scale(1.6);
+  transform: translateX(10%);
+}
+
+.icon__button {
+  align-items: center;
+  display: inline-flex;
+  height: 28px;
+  width: 28px;
+  justify-content: center;
+  /* padding: calc(28px * .2); */
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.icon__button svg {
+  flex-shrink: 0;
+}
+
+.icon__button::before {
+  content: "";
+  height: 100%;
+  position: absolute;
+  transition: transform .5s cubic-bezier(.08, .5, .44, .96);
+  width: 100%;
+}
+
+.icon__button::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  transition: transform .5s cubic-bezier(.08, .5, .44, .96);
+  width: 100%;
 }
