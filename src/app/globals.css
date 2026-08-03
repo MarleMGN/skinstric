@@ -23,6 +23,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-roobert), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 .hover-swap {
@@ -76,9 +77,9 @@ h1 {
 .dotted-square__right {
   display: inline-block;
   position: relative;
-  width: 604px;
-  height: 604px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='604' height='604' viewBox='0 0 604 604' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M302 1L603 302L302 603L1 302L302 1Z' stroke='%231A1B1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 4'/%3E%3C/svg%3E");
+  width: 676px;
+  height: 676px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='676' height='676' viewBox='0 0 676 676' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M338 1L675 338L338 675L1 338L338 1Z' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 3'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 1;
@@ -100,12 +101,12 @@ h1 {
 }
 
 .dotted-square__right::after {
-  opacity: 0.3
+  opacity: 0.3;
 }
 
-.dotted-square__right:hover::before { 
-  transform: scale(1.35); 
-  transform: translateX(-5%)
+.dotted-square__right:hover::before {
+  transform: scale(1.35);
+  transform: translateX(-5%);
 }
 .dotted-square__right:hover::after {
   transform: scale(1.6);
@@ -118,9 +119,9 @@ h1 {
   top: 50%;
   left: -375px;
   transform: translateY(-50%);
-  width: 604px;
-  height: 604px;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='604' height='604' viewBox='0 0 604 604' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M302 1L603 302L302 603L1 302L302 1Z' stroke='%231A1B1C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 4'/%3E%3C/svg%3E");
+  width: 676px;
+  height: 676px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='676' height='676' viewBox='0 0 676 676' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M338 1L675 338L338 675L1 338L338 1Z' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.1 3'/%3E%3C/svg%3E");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 1;
@@ -142,27 +143,71 @@ h1 {
 }
 
 .dotted-square__left::after {
-  opacity: 0.3
+  opacity: 0.3;
 }
 
-.dotted-square__left:hover::before { 
-  transform: scale(1.35); 
-  transform: translateX(5%)
+.relative:has(.nav-arrow:hover) .dotted-square__left::before {
+  transform: scale(1.35) translateX(5%);
 }
-.dotted-square__left:hover::after {
-  transform: scale(1.6);
-  transform: translateX(10%);
+.relative:has(.nav-arrow:hover) .dotted-square__left::after {
+  transform: scale(1.6) translateX(10%);
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1b1c;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.nav-arrow:focus-visible {
+  outline: none;
+}
+
+.nav-arrow--left {
+  left: calc(50% + 80px);
+}
+
+.nav-arrow--left .icon__button svg {
+  transform: rotate(135deg);
+}
+
+.nav-arrow--right {
+  right: calc(50% + 150px);
+}
+
+.nav-arrow--right .icon__button svg {
+  transform: rotate(-45deg);
+}
+
+.nav-arrow:hover .icon__button,
+.nav-arrow:focus-visible .icon__button {
+  /* background: #1a1b1c; */
+  box-shadow: 0 10px 24px rgba(26, 27, 28, 0.18);
+}
+
+.nav-arrow:active .icon__button {
+  transform: translateY(1px) scale(0.98);
 }
 
 .icon__button {
   align-items: center;
   display: inline-flex;
-  height: 28px;
-  width: 28px;
+  height: 35px;
+  width: 35px;
+  padding: 8px;
   justify-content: center;
-  /* padding: calc(28px * .2); */
   position: relative;
   transform: rotate(45deg);
+  border: 1px solid #1A1B1C;
 }
 
 .icon__button svg {
@@ -173,7 +218,7 @@ h1 {
   content: "";
   height: 100%;
   position: absolute;
-  transition: transform .5s cubic-bezier(.08, .5, .44, .96);
+  transition: transform 0.5s cubic-bezier(0.08, 0.5, 0.44, 0.96);
   width: 100%;
 }
 
@@ -181,6 +226,7 @@ h1 {
   content: "";
   height: 100%;
   position: absolute;
-  transition: transform .5s cubic-bezier(.08, .5, .44, .96);
+  transition: transform 0.5s cubic-bezier(0.08, 0.5, 0.44, 0.96);
   width: 100%;
+  border: .5px dotted #1A1B1C;
 }
