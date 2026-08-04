@@ -273,11 +273,12 @@ h1 {
 
 .landing-wrapper:has(.nav-arrow--left:hover) .center-content,
 .landing-wrapper:has(.nav-arrow--left:focus-visible) .center-content {
-  transform: translateX(375px);
-  margin-inline: 0 auto;
+  transform: translateX(275px);
+  text-align: right;
 }
 
 .landing-wrapper:has(.nav-arrow--right:hover) .center-content,
 .landing-wrapper:has(.nav-arrow--right:focus-visible) .center-content {
-  transform: translateX(-375px);
+  transform: translateX(-275px);
+  text-align: left;
 }

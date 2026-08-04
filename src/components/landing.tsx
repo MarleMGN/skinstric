@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 const Landing = () => {
-  const [align, setAlign] = useState<"center" | "left" | "right">("center");
   const handleScroll = (direction: "left" | "right") => {
     if (typeof window === "undefined") return;
 
@@ -12,8 +11,6 @@ const Landing = () => {
       behavior: "smooth",
     });
   };
-
-  const alignClass = align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
 
   return (
     <>
@@ -27,8 +24,6 @@ const Landing = () => {
                 type="button"
                 className="nav-arrow nav-arrow--left"
                 onClick={() => handleScroll("left")}
-                onMouseEnter={() => setAlign("right")}
-                onMouseLeave={() => setAlign("center")}
                 aria-label="Discover A.I."
               >
                 <span className="icon__button">
@@ -56,7 +51,7 @@ const Landing = () => {
         {/* Center Content */}
         <div className="px-8 w-full mr-auto ml-auto flex items-center flex-auto pb-9">
           <div className="contents">
-            <div className={`center-content m-auto ${alignClass}`}>
+            <div className="center-content m-auto text-center">
               <div className="block overflow-hidden">
                 <h1
                   style={{
@@ -83,8 +78,6 @@ const Landing = () => {
                 type="button"
                 className="nav-arrow nav-arrow--right"
                 onClick={() => handleScroll("right")}
-                onMouseEnter={() => setAlign("left")}
-                onMouseLeave={() => setAlign("center")}
                 aria-label="Take Test"
               >
                 <span className="right-text text-[10px] font-medium text-[#1A1B1C] tracking-tight whitespace-nowrap pr-4.5">
