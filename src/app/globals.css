@@ -104,15 +104,6 @@ h1 {
   opacity: 0.3;
 }
 
-.dotted-square__right:hover::before {
-  transform: scale(1.35);
-  transform: translateX(-5%);
-}
-.dotted-square__right:hover::after {
-  transform: scale(1.6);
-  transform: translateX(-10%);
-}
-
 .dotted-square__left {
   display: inline-block;
   position: absolute;
@@ -146,11 +137,18 @@ h1 {
   opacity: 0.3;
 }
 
-.relative:has(.nav-arrow:hover) .dotted-square__left::before {
-  transform: scale(1.35) translateX(5%);
+.nav-group__left:has(.nav-arrow:hover) .dotted-square__left::before {
+  transform: scale(1.001) translateX(5%);
 }
-.relative:has(.nav-arrow:hover) .dotted-square__left::after {
-  transform: scale(1.6) translateX(10%);
+.nav-group__left:has(.nav-arrow:hover) .dotted-square__left::after {
+  transform: scale(1.01) translateX(10%);
+}
+
+.nav-group__right:has(.nav-arrow:hover) .dotted-square__right::before {
+  transform: scale(1.22) translateX(5%);
+}
+.nav-group__right:has(.nav-arrow:hover) .dotted-square__right::after {
+  transform: scale(1.5) translateX(10%);
 }
 
 .nav-arrow {
@@ -188,14 +186,49 @@ h1 {
   transform: rotate(-45deg);
 }
 
-.nav-arrow:hover .icon__button,
-.nav-arrow:focus-visible .icon__button {
-  /* background: #1a1b1c; */
-  box-shadow: 0 10px 24px rgba(26, 27, 28, 0.18);
+.nav-arrow:hover .icon__button::after,
+.nav-arrow:focus-visible .icon__button::after {
+  transform: scale(1.8);
 }
 
-.nav-arrow:active .icon__button {
-  transform: translateY(1px) scale(0.98);
+.nav-arrow:hover .icon__button::before,
+.nav-arrow:focus-visible .icon__button::before {
+  transform: scale(1.4);
+}
+
+.nav-arrow:hover .left-text,
+.nav-arrow:focus-visible .left-text {
+  transform: translateX(20px);
+}
+
+.nav-arrow:hover .right-text,
+.nav-arrow:focus-visible .right-text {
+  transform: translateX(-20px);
+}
+
+.left-text {
+  transition: transform 0.3s ease;
+}
+
+.right-text {
+  transition: transform 0.3s ease;
+}
+
+.nav-fixed {
+  transform: translateY(-50%);
+  transition: transform 0.8s ease;
+}
+
+.landing-wrapper:has(.nav-arrow--right:hover) .nav-fixed__left,
+.landing-wrapper:has(.nav-arrow--right:focus-visible) .nav-fixed__left {
+  transform: translate(-100vw, -50%);
+  transition: transform 0.4s ease;
+}
+
+.landing-wrapper:has(.nav-arrow--left:hover) .nav-fixed__right,
+.landing-wrapper:has(.nav-arrow--left:focus-visible) .nav-fixed__right {
+  transform: translate(100vw, -50%);
+  transition: transform 0.4s ease;
 }
 
 .icon__button {
@@ -207,7 +240,7 @@ h1 {
   justify-content: center;
   position: relative;
   transform: rotate(45deg);
-  border: 1px solid #1A1B1C;
+  
 }
 
 .icon__button svg {
@@ -216,10 +249,12 @@ h1 {
 
 .icon__button::before {
   content: "";
-  height: 100%;
   position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='35' height='35' viewBox='0 0 35 35' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='33' height='33' stroke='%231A1B1C' stroke-width='1' stroke-dasharray='0.1 2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
   transition: transform 0.5s cubic-bezier(0.08, 0.5, 0.44, 0.96);
-  width: 100%;
 }
 
 .icon__button::after {
@@ -228,5 +263,21 @@ h1 {
   position: absolute;
   transition: transform 0.5s cubic-bezier(0.08, 0.5, 0.44, 0.96);
   width: 100%;
-  border: .5px dotted #1A1B1C;
+  border: 1px solid #1A1B1C;
+}
+
+.center-content {
+  transition: transform 0.6s ease;
+  margin-inline: auto;
+}
+
+.landing-wrapper:has(.nav-arrow--left:hover) .center-content,
+.landing-wrapper:has(.nav-arrow--left:focus-visible) .center-content {
+  transform: translateX(375px);
+  margin-inline: 0 auto;
+}
+
+.landing-wrapper:has(.nav-arrow--right:hover) .center-content,
+.landing-wrapper:has(.nav-arrow--right:focus-visible) .center-content {
+  transform: translateX(-375px);
 }

@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 const Landing = () => {
+  const [align, setAlign] = useState<"center" | "left" | "right">("center");
   const handleScroll = (direction: "left" | "right") => {
     if (typeof window === "undefined") return;
 
@@ -12,18 +13,22 @@ const Landing = () => {
     });
   };
 
+  const alignClass = align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
+
   return (
     <>
-      <div className="flex flex-auto flex-col relative overflow-hidden">
+      <div className="landing-wrapper flex flex-auto flex-col relative overflow-hidden">
         {/* Left Navigation */}
-        <div className="fixed left-0 top-1/2 -translate-y-1/2 z-10 flex items-center gap-2">
-          <div className="relative flex flex-col items-center">
+        <div className="nav-fixed nav-fixed__left fixed left-0 top-1/2 z-10 flex items-center gap-2">
+          <div className="nav-group__left relative flex flex-col items-center">
             <div className="relative">
               <span className="dotted-square__left"></span>
               <button
                 type="button"
                 className="nav-arrow nav-arrow--left"
                 onClick={() => handleScroll("left")}
+                onMouseEnter={() => setAlign("right")}
+                onMouseLeave={() => setAlign("center")}
                 aria-label="Discover A.I."
               >
                 <span className="icon__button">
@@ -40,7 +45,7 @@ const Landing = () => {
                     ></path>
                   </svg>
                 </span>
-                <span className="text-[10px] font-medium text-[#1A1B1C] tracking-tight whitespace-nowrap pl-4.5">
+                <span className="left-text text-[10px] font-medium text-[#1A1B1C] tracking-tight whitespace-nowrap pl-4.5">
                   DISCOVER A.I.
                 </span>
               </button>
@@ -51,7 +56,7 @@ const Landing = () => {
         {/* Center Content */}
         <div className="px-8 w-full mr-auto ml-auto flex items-center flex-auto pb-9">
           <div className="contents">
-            <div className="m-auto text-center">
+            <div className={`center-content m-auto ${alignClass}`}>
               <div className="block overflow-hidden">
                 <h1
                   style={{
@@ -59,10 +64,10 @@ const Landing = () => {
                     letterSpacing: "-0.07em",
                     lineHeight: "0.945",
                   }}
-                  className="text-[86px] max-w-[14ch]"
+                  className="text-[86px] max-w-[13ch]"
                 >
-                  <span style={{ display: "block" }}>Sophisticated</span>
-                  <span style={{ display: "block" }}>skincare</span>
+                  <span style={{ display: "inline-block", position: "relative" }}>Sophisticated</span>
+                  <span style={{ display: "inline-block", position: "relative", transform: "translate(0px, 0px)" }}>skincare</span>
                 </h1>
               </div>
             </div>
@@ -70,17 +75,19 @@ const Landing = () => {
         </div>
 
         {/* Right Navigation */}
-        <div className="fixed -right-94.5 top-1/2 -translate-y-1/2 z-10 flex items-center gap-2">
-          <div className="relative flex flex-col items-center">
+        <div className="nav-fixed nav-fixed__right fixed -right-94.5 top-1/2 z-10 flex items-center gap-2">
+          <div className="nav-group__right relative flex flex-col items-center">
             <div className="relative">
               <span className="dotted-square__right"></span>
               <button
                 type="button"
                 className="nav-arrow nav-arrow--right"
                 onClick={() => handleScroll("right")}
+                onMouseEnter={() => setAlign("left")}
+                onMouseLeave={() => setAlign("center")}
                 aria-label="Take Test"
               >
-                <span className="text-[10px] font-medium text-[#1A1B1C] tracking-tight whitespace-nowrap pr-4.5">
+                <span className="right-text text-[10px] font-medium text-[#1A1B1C] tracking-tight whitespace-nowrap pr-4.5">
                   TAKE TEST
                 </span>
                 <span className="icon__button">
