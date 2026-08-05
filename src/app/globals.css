@@ -3,6 +3,10 @@
 :root {
   --background: #fff;
   --foreground: #171717;
+  --base-transform: translate(0);
+  --base-rotation: 45deg;
+  --transition-duration: 0.3s;
+  --square-size: 120px;
 }
 
 @theme inline {
@@ -42,6 +46,11 @@ h1 {
   color: black;
 }
 
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .hover-swap span,
 .hover-swap::after {
   display: flex;
@@ -72,6 +81,55 @@ h1 {
 
 .hover-swap:hover::after {
   transform: translate3d(0, 0, 0);
+}
+
+.dotted-square {
+  width: 20vw;
+  height: 20vw;
+  --base-transform: translate(0);
+    --base-rotation: 45deg;
+    --size: 200px;
+    --transition-duration: 0.3s;
+    border: 2px dotted #a0a4ab;
+    display: block;
+    position: relative;
+    transform: rotate(var(--base-rotation));
+    will-change: transform;
+    animation: spin 180s linear infinite;
+}
+
+.dotted-square__expanded::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  scale: 1.1;
+  opacity: 0.6;
+  border: 2px dotted #a0a4ab;
+  --base-transform: translate(-50%, -50%) scale(1.1);
+  transition: transform var(--transition-duration) cubic-bezier(.08, .5, .44, .96);
+  animation: spin 160s linear infinite;
+}
+
+.dotted-square__expanded::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  scale: 1.2;
+  opacity: 0.3;
+  border: 2px dotted #a0a4ab;
+  --base-transform: translate(-50%, -50%) scale(1.2);
+  transition: transform var(--transition-duration) cubic-bezier(.08, .5, .44, .96) calc(var(--transition-duration) / 2), opacity 0s calc(var(--transition-duration) / 2);
+  animation: spin 100s linear infinite;
+
+}
+
+@keyframes spin {
+  0% {
+    transform: var(--base-transform) rotate(calc(var(--base-rotation)));
+  }
+  100% {
+    transform: var(--base-transform) rotate(calc(var(--base-rotation) + 1turn));
+  }
 }
 
 .dotted-square__right {
@@ -281,4 +339,92 @@ h1 {
 .landing-wrapper:has(.nav-arrow--right:focus-visible) .center-content {
   transform: translateX(-275px);
   text-align: left;
+}
+
+.hero-title {
+  width: max-content;
+}
+
+.hero-title > span {
+  display: block;
+}
+
+.hero-title__second-line {
+  position: relative;
+  width: max-content;
+  left: 20%;
+  transform: translateX(-50%);
+  transition: left 0.6s ease, transform 0.6s ease;
+}
+
+.landing-wrapper:has(.nav-arrow--left:hover) .hero-title__second-line {
+  left: 39%;
+  transform: translateX(-100%);
+}
+
+.landing-wrapper:has(.nav-arrow--right:hover) .hero-title__second-line {
+  left: 0;
+  transform: translateX(0);
+}
+
+.text-caption {
+  font-size: clamp(10px, -6px + 1.5625vw, 14px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.71;
+}
+
+.introduction-title {
+  font-size: clamp(12px, 4px + .625vw, 16px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.25;
+}
+
+.access-btn {
+  width: 20vw;
+  cursor: pointer;
+}
+
+.access-btn__icon {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 112px;
+}
+
+.access-btn__icon::before {
+  background-color: black;
+  content: "";
+  height: calc(var(--square-size) / 3);
+  left: 50%;
+  top: 50%;
+  width: 1px;
+}
+
+.access-btn__icon svg {
+  height: auto;
+  transition: transform .5s cubic-bezier(.08, .5, .44, .96);
+  width: 100%;
+}
+
+.access-btn:hover .access-btn__icon svg {
+  transform: scale(0.8);
+}
+
+.access-btn__text {
+  position: absolute;
+  text-align: left;
+  width: 136px;
+  font-size: 12px;
+}
+
+.access-btn__left {
+  bottom: 85%;
+  left: 85%;
+}
+
+.access-btn__right {
+  right: 85%;
+  top: 85%;
 }

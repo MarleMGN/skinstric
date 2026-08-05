@@ -49,7 +49,7 @@ const Landing = () => {
         </div>
 
         {/* Center Content */}
-        <div className="px-8 w-full mr-auto ml-auto flex items-center flex-auto pb-9">
+        <div className="px-8 w-full mr-auto ml-auto flex flex-col items-center flex-auto pb-9">
           <div className="contents">
             <div className="center-content m-auto text-center">
               <div className="block overflow-hidden">
@@ -61,10 +61,15 @@ const Landing = () => {
                   }}
                   className="text-[86px] max-w-[13ch]"
                 >
-                  <span style={{ display: "inline-block", position: "relative" }}>Sophisticated</span>
-                  <span style={{ display: "inline-block", position: "relative", transform: "translate(0px, 0px)" }}>skincare</span>
+                  <span style={{ display: "block" }} className="hero-title">Sophisticated</span>
+                  <span style={{ display: "block", transform: "translate(0px, 0px)" }} className="hero-title__second-line">skincare</span>
                 </h1>
               </div>
+            </div>
+            <div className="max-w-79 text-caption text-left self-start">
+              <p style={{ transform: "translate(0px, 0px)" }}>
+                SKINSTRIC DEVELOPED AN A.I. THAT CREATES A HIGHLY PERSONALISED ROUTINE TAILORED TO WHAT YOUR SKIN NEEDS.
+              </p>
             </div>
           </div>
         </div>
