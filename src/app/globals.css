@@ -84,8 +84,8 @@ p {
 }
 
 .dotted-square {
-  width: 20vw;
-  height: 20vw;
+  width: 15vw;
+  height: 15vw;
   --base-transform: translate(0);
     --base-rotation: 45deg;
     --size: 200px;
@@ -298,7 +298,6 @@ p {
   justify-content: center;
   position: relative;
   transform: rotate(45deg);
-  
 }
 
 .icon__button svg {
@@ -387,7 +386,7 @@ p {
 }
 
 .access-btn__icon {
-  left: 50%;
+  left: 38%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 112px;
@@ -428,3 +427,184 @@ p {
   right: 85%;
   top: 85%;
 }
+
+.back-btn__wrapper {
+  position: fixed;
+  left: 32px;
+  bottom: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn { 
+  align-items: center;
+  display: inline-flex;
+  height: 35px;
+  width: 35px;
+  padding: 8px;
+  justify-content: center;
+  transform: rotate(45deg);
+}
+
+.back-btn svg {
+  transform: rotate(135deg);
+  margin: 3px 3px 0 0;
+}
+
+.back-btn::before {
+  content: "";
+  height: 100%;
+  position: absolute;
+  transition: transform 0.5s cubic-bezier(0.08, 0.5, 0.44, 0.96);
+  width: 100%;
+  border: 1px solid #1A1B1C;
+}
+
+.back-btn__text {
+  letter-spacing: -.02em;
+  font-size: clamp(12px, 4px + .625vw, 16px);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-left: 16px;
+  opacity: 0.7;
+  transition: transform 0.3s ease;
+}
+
+.back-btn__wrapper:hover .back-btn__text {
+  transform: translateX(20px);
+}
+
+.back-btn__wrapper:hover .back-btn::before {
+  transform: scale(1.4);
+}
+
+.intro-diamond {
+  display: inline-block;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin-top: 100px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='500' height='500' viewBox='0 0 500 500' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M250 1L499 250L250 499L1 250L250 1Z' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.2 8'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.intro-diamond::before {
+  content: "";
+  position: absolute;
+  inset: -25px; 
+  opacity: 0.8;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='600' height='600' viewBox='0 0 600 600' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M300 1L599 300L300 599L1 300L300 1Z' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.2 8'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.intro-diamond::after {
+  content: "";
+  position: absolute;
+  inset: -50px; 
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='700' height='700' viewBox='0 0 700 700' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M350 1L699 350L350 699L1 350L350 1Z' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='0.2 8'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.intro-diamond-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.intro-input-group {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.intro-input-label {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: #a0a4ab;
+  text-transform: uppercase;
+}
+
+.intro-input-viewport {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-input {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #1a1b1c;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #1a1b1c;
+  padding-bottom: 8px;
+  width: auto;              
+  field-sizing: content;    
+  outline: none;
+}
+
+.intro-input::placeholder {
+  color: #1a1b1c;
+  opacity: 1;
+}
+
+.intro-input:focus::placeholder {
+  opacity: 0.4;
+}
+
+.intro-input__entering {
+  animation: slideUpIn 0.4s cubic-bezier(0.08, 0.5, 0.44, 0.96) forwards;
+}
+
+.intro-input__leaving {
+  animation: slideDownOut 0.4s cubic-bezier(0.08, 0.5, 0.44, 0.96) forwards;
+}
+
+.page-visible {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.page-fade.page-visible {
+  opacity: 0;
+}
+
+@keyframes slideUpIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+
